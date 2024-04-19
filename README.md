@@ -5,7 +5,7 @@ This application is created as part of the BOOT.DEV Personal Project 1 exercise
 
 The intention of this program is to open a file containing the structure of a nonogram
 and to attempt to solve the nonogram. A visual representation of the solution will be
-provided. The program is developed in Python using the tk framework.
+provided. The program is developed in Python using the tkinter framework.
 
 The format will be <filename>.non;
 
