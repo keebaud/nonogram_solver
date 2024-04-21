@@ -1,8 +1,12 @@
+import sys
 from nonogram import Nonogram, NonoLoader
 
 def main():
-    source_dir = 'nonfiles/'
-    nonofile = 'corners.non'
+    source_dir = sys.argv[1] + '/'
+    nonofile = sys.argv[2]
+    print(source_dir + nonofile)
+    #source_dir = 'nonfiles/'
+    #nonofile = 'corners.non'
     nonogram = Nonogram()
     
     # Load the Nonogram

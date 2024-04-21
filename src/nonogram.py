@@ -67,8 +67,7 @@ class Nonogram:
             spaces.append(1)
 
         # Resolve valid entries
-        space_location = len(spaces - 1)
-
+        space_location = len(spaces) - 1
 
         ### Code to be added here ###
 
