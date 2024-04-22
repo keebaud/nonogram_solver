@@ -9,10 +9,10 @@ class Nonogram:
         self._grid = []
 
     def print(self):
-        for j in range(self.num_cols):
+        for i in range(self.num_cols):
             outstring = ''
-            for i in range(self.num_rows):
-                outstring += self._grid[i][j]
+            for j in range(self.num_rows):
+                outstring += self._grid[i][j] * 2
             print(outstring)
 
     def solve(self):
@@ -30,7 +30,7 @@ class Nonogram:
                 for j in range(self.num_cols):
                     current_row += self._grid[row][j]
                 # Analyse clues to find new values and place them in current_row
-                change_condition = self.changes_found(self._rows[row], current_row)
+                change_condition = find_changes(self._rows[row], current_row)
                 if change_condition[0]:
                     # Mark solutions as non-static
                     static = False
@@ -126,7 +126,7 @@ def construct_line(blocks, spaces, stringlength):
         return_string += '.' * (stringlength - len(return_string))
     return return_string
 
-def changes_found(value_array, current_line):
+def find_changes(value_array, current_line):
     # if current_line is complete, return False to indicate that no changes were made
     if ' ' not in current_line:
         return [False, current_line]
@@ -161,23 +161,22 @@ def changes_found(value_array, current_line):
                 spaces[space_location] += 1
         else:
             # Create an initial valid string in possible_values
-            for i in range(len(current_line)):
-                if possible_values[i] == '-':
-                    possible_values[i] = check_string[i]
             valid = True
             for i in range(len(current_line)):
                 # Determine if possible_values conflicts with current_line
-                if not(current_line[i] == ' ') and possible_values[i] != current_line[i]:
-                    print(i, possible_values, current_line)
+                if not(current_line[i] == ' ') and check_string[i] != current_line[i]:
                     valid = False
             if valid:
+                for i in range(len(current_line)):
+                    if possible_values[i] == '-':
+                        possible_values[i] = check_string[i]
+
                 for i in range(len(current_line)):
                     # Remove possible values that could be either . or @
                     if not possible_values[i] == check_string[i]:
                         possible_values[i] = ' '
             space_location = len(spaces) - 1
             spaces[space_location] += 1
-        time.sleep(1)
 
     # create possible_values string
     return_string = ''
@@ -186,6 +185,8 @@ def changes_found(value_array, current_line):
 
     # Update change condition with possible values and return
     if '-' in return_string:
-        print(return_string)
         raise Exception('changes_found failed to add values correctly')
-    return [True, return_string]
+    if current_line == return_string:
+        return [False, return_string]
+    else:
+        return [True, return_string]
