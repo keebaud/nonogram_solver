@@ -1,12 +1,10 @@
 import sys
 from nonogram import Nonogram, NonoLoader
+from nonogram import changes_found
 
 def main():
     source_dir = sys.argv[1] + '/'
     nonofile = sys.argv[2]
-    print(source_dir + nonofile)
-    #source_dir = 'nonfiles/'
-    #nonofile = 'corners.non'
     nonogram = Nonogram()
     
     # Load the Nonogram
@@ -16,6 +14,12 @@ def main():
         print(f'Error: {e}')
         return
     
+    print("3,1,3 into '          '")
+    print(changes_found([3,1,3], '          '))
+    print("3,1,3 into '.         '")
+    print(changes_found([3,1,3], '.         '))
+    return
+
     # Try to solve the Nonogram
     try:
         nonogram.solve()
@@ -28,10 +32,6 @@ def main():
     else:
         print('Unable to complete Nonogram')
 
-    for j in range(nonogram.num_cols):
-        outstring = ''
-        for i in range(nonogram.num_rows):
-            outstring += nonogram._grid[i][j]
-        print(outstring)
+    nonogram.print()
 
 main()
