@@ -9,14 +9,15 @@ graphical feedback.
 
 The format will be *filename*.non
 
-> num_rows, num_cols
-> row1, row2, ..., row_num_rows
-> col1, col2, ..., col_num_cols
+num_rows, num_cols  
+row1, row2, ..., row*r*
+col1, col2, ..., col*c*
 
 Each line will be formatted as:
-> 0            - blank line
-> n            - single solid line
-> n1:n2:...:nx - broken line with x segments
+
+0            - blank line  
+n            - single solid line  
+n1:n2:...:nx - broken line with x segments  
 
 The program will check each possible arrangement for each row and column
 and find fixed positions that are either blank or solid. These will be marked
