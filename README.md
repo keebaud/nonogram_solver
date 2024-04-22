@@ -10,8 +10,8 @@ graphical feedback.
 The format will be *filename*.non
 
 num_rows, num_cols  
-row1, row2, ..., row*r*
-col1, col2, ..., col*c*
+row1, row2, ..., row*r*  
+col1, col2, ..., col*c*  
 
 Each line will be formatted as:
 
