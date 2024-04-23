@@ -9,9 +9,9 @@ class Nonogram:
         self._grid = []
 
     def print(self):
-        for i in range(self.num_cols):
+        for i in range(self.num_rows):
             outstring = ''
-            for j in range(self.num_rows):
+            for j in range(self.num_cols):
                 outstring += self._grid[i][j] * 2
             print(outstring)
 
@@ -66,7 +66,9 @@ class NonoLoader:
     def __init__(self, source_dir, nonofile, new_nonogram):
         
         # Load file into nonoarray for processing
-        nonoarray = [line.strip().split(',') for line in open(source_dir + nonofile, 'r')]
+        f = open(source_dir + nonofile, 'r')
+        nonoarray = [line.strip().split(',') for line in f]
+        f.close()
         
         # Initialize Nonogram with checks
         if not nonoarray:
@@ -85,9 +87,9 @@ class NonoLoader:
         # '.' == blank cell
         # '@' == filled cell
 
-        for i in range(new_nonogram.num_cols):
+        for i in range(new_nonogram.num_rows):
             new_nonogram._grid.append([])
-            for j in range(new_nonogram.num_rows):
+            for j in range(new_nonogram.num_cols):
                 new_nonogram._grid[i].append(' ')
 
         cell_count = 0

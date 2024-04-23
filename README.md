@@ -7,6 +7,8 @@ and to attempt to solve the nonogram. A visual representation of the solution wi
 provided. The program is developed in Python, eventually using tkinker frameword for
 graphical feedback.
 
+unit testing has been implemented using tests.py with the unittest framework
+
 The format will be *filename*.non
 
 num_rows, num_cols  
