@@ -180,10 +180,12 @@ def find_changes(value_array, current_line):
             space_location = len(spaces) - 1
             spaces[space_location] += 1
 
+            # If it reaches a state of no changes then return
+            if current_line == ''.join(possible_values):
+                return [False, current_line]
+
     # create possible_values string
-    return_string = ''
-    for i in possible_values:
-        return_string += i
+    return_string = ''.join(possible_values)
 
     # Update change condition with possible values and return
     if '-' in return_string:
